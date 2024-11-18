@@ -2,11 +2,22 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import PropertySummary from './components/PropertySummary'
+import PropertyList from './components/PropertyList'
+import PropertyFull from './components/PropertyFull'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
+    <>
+
+    <PropertyList/>
+
+    </>
+  )
+
+  /*return (
     <>
       <div>
         <a href="https://vite.dev" target="_blank">
@@ -29,7 +40,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  )*/
 }
 
 export default App
