@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import { useGetPropertyByIdQuery } from '../services/properties';
+import { useParams } from 'react-router-dom';
 
 interface PropertyFull {
     /** The property id */
@@ -12,17 +13,15 @@ interface PropertyFull {
 
   }
 
-export default function PropertyFull({id} : PropertyFull) {
+export default function PropertyFull() {
 
-    const { data, error, isLoading } = useGetPropertyByIdQuery(id);
+    let { propertyId } = useParams();
 
-    
+    const { data, error, isLoading } = useGetPropertyByIdQuery(Number(propertyId));
 
         console.log(`DATA 1 IS ------> ${JSON.stringify(data)}`)
         console.log(`DATA 2 IS ------> ${error}`)
         console.log(`DATA 3 IS ------> ${isLoading}`)
-
- 
 
   return (
 

@@ -12,14 +12,31 @@ import '@fontsource/roboto/700.css';
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import theme from './theme.tsx'
 
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useParams,
+} from "react-router-dom";
+import "./index.css";
+import PropertyFull from './components/PropertyFull.tsx'
 
-//dotenv.config()
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App/>,
+  },
+  {
+    path: "property/:propertyId",
+    element: <PropertyFull/>,
+  },
+]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App />
+    <RouterProvider router = {router}>  
+      </RouterProvider>
       </ThemeProvider>
     </Provider>
   </StrictMode>,
