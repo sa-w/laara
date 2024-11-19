@@ -2,16 +2,12 @@ import Typography from '@mui/material/Typography';
 import { useGetPropertyByIdQuery } from '../services/properties';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { Box, Button, Card, CardActions, CardContent, Divider, ImageList, ImageListItem, Link, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Rating, Stack, styled } from '@mui/material';
+import { Box, Button, Card, CardContent, Divider, ImageList, ImageListItem, Link, List, ListItem, Paper, Rating } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
-import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
 import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
-import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import BedroomParentOutlinedIcon from '@mui/icons-material/BedroomParentOutlined';
 import DoorBackOutlinedIcon from '@mui/icons-material/DoorBackOutlined';
 import BathroomOutlinedIcon from '@mui/icons-material/BathroomOutlined';
@@ -19,12 +15,29 @@ import AddHomeWorkOutlinedIcon from '@mui/icons-material/AddHomeWorkOutlined';
 import CountertopsOutlinedIcon from '@mui/icons-material/CountertopsOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import RectangleOutlinedIcon from '@mui/icons-material/RectangleOutlined';
-import Carousel from 'react-material-ui-carousel'
-import { WidthFull } from '@mui/icons-material';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
+
+// Define the prop types
+type AccessibilityFeaturesIconsProps = {
+  category:
+    | "general"
+    | "bedroom"
+    | "entrance"
+    | "bathroom"
+    | "interior"
+    | "common"
+    | "kitchen"
+    | "communication"
+    | "Children"
+    | "Pets"
+    | "Check-Out"
+    | "Check-In";
+  color?: "inherit" | "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  fontSize?: "inherit" | "small" | "medium" | "large";
+};
 
 interface PropertyFull {
   /** The property id */
@@ -39,8 +52,24 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
       }&fit=crop&auto=format&dpr=2 2x`,
   };
 }
-
-function AccessibilityFeaturesIcons({ category, color, fontSize }) {
+type AccessibilityFeaturesProps = {
+  category:
+    | "general"
+    | "bedroom"
+    | "entrance"
+    | "bathroom"
+    | "interior"
+    | "common"
+    | "kitchen"
+    | "communication"
+    | "Children"
+    | "Pets"
+    | "Check-Out"
+    | "Check-In";
+  color?: "inherit" | "primary" | "secondary" | "error" | "info" | "success" | "warning";
+  fontSize?: "inherit" | "small" | "medium" | "large";
+};
+function AccessibilityFeaturesIcons({ category, color, fontSize }: AccessibilityFeaturesProps) {
 
   if (category === "general") {
     return (<BedroomParentOutlinedIcon color={color} fontSize={fontSize} />);
@@ -93,20 +122,6 @@ function AccessibilityFeaturesIcons({ category, color, fontSize }) {
     return (<CheckBoxOutlinedIcon color={color} fontSize={fontSize} />);
 
   }
-}
-
-function Item({props})
-{
-    return (
-        <Paper>
-            <h2>{props.item.name}</h2>
-            <p>{props.item.description}</p>
-
-            <Button className="CheckButton">
-                Check it out!
-            </Button>
-        </Paper>
-    )
 }
 
 export default function PropertyFull() {

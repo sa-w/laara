@@ -5,6 +5,7 @@ export interface ApiResponse {
   }
   
   export interface PropertyData {
+    map(arg0: (value: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
     id: number;
     name: string;
     description: string;

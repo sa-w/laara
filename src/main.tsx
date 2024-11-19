@@ -15,7 +15,6 @@ import theme from './theme.tsx'
 import {
   createBrowserRouter,
   RouterProvider,
-  useParams,
 } from "react-router-dom";
 import "./index.css";
 import PropertyFull from './components/PropertyFull.tsx'

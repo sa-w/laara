@@ -1,23 +1,12 @@
 import Typography from '@mui/material/Typography';
 import { useGetAllPropertiesQuery } from '../services/properties';
-import { Box, Button, Paper, Rating, styled } from '@mui/material';
+import { Box, Button, Paper, Rating } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
 import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    ...theme.applyStyles('dark', {
-        backgroundColor: '#1A2027',
-    }),
-}));
 
 export default function PropertyList() {
 
@@ -90,7 +79,7 @@ export default function PropertyList() {
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <LocationOnOutlinedIcon fontSize="small" />
                                             <span style={{ marginLeft: 8 }}>
-                                                <Link variant="body2" href={`https://maps.google.com/?q=${property.address.latitude},${property.address.longitude}`} target="_blank" rel="noopener noreferrer">{property.address.county}, {property.address.country}</Link>
+                                                <a  href={`https://maps.google.com/?q=${property.address.latitude},${property.address.longitude}`} target="_blank" rel="noopener noreferrer">{property.address.county}, {property.address.country}</a>
                                             </span>
                                         </div>
 
@@ -159,7 +148,7 @@ export default function PropertyList() {
                                         <Rating
                                             name="simple-uncontrolled"
                                             onChange={(event, newValue) => {
-                                                console.log(newValue);
+                                                console.log(event , newValue);
                                             }}
                                             defaultValue={value}
                                         />
