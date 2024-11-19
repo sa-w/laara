@@ -19,15 +19,18 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import PropertyFull from './components/PropertyFull.tsx'
+import ErrorComponent from './components/ErrorComponent.tsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    errorElement: <ErrorComponent />,
   },
   {
     path: "property/:propertyId",
     element: <PropertyFull/>,
+    errorElement: <ErrorComponent />,
   },
 ]);
 

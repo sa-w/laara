@@ -1,11 +1,12 @@
 import Typography from '@mui/material/Typography';
 import { useGetAllPropertiesQuery } from '../services/properties';
-import { Box, Button, Link, Paper, Rating, styled } from '@mui/material';
+import { Box, Button, Paper, Rating, styled } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
 import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -171,10 +172,11 @@ export default function PropertyList() {
                                     <Typography variant="body2">
                                         <strong>Comments:</strong> {property._count.reviews}
                                     </Typography>
-
+                                    <Link to={`/property/${property.id}`}>
                                     <Button variant="contained" endIcon={<ArrowForwardIosOutlinedIcon />}>
                                         View property
                                     </Button>
+                                    </Link>
                                 </Box>
                             </Paper>
                         ))}
