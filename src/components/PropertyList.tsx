@@ -17,7 +17,7 @@ export default function PropertyList() {
 
         <>
             {error ? (
-                <>Oh no, there was an error</>
+                <>There was an error</>
             ) : isLoading ? (
                 <>Loading...</>
             ) : data ? (
@@ -106,30 +106,7 @@ export default function PropertyList() {
 
 
                                     </>
-                                    {/*<List >
-                                        {property.rooms.map((rooms) => (
-
-                                            <><ListItem alignItems="flex-start">
-                                                <ListItemAvatar>
-                                                    <Avatar alt="room type image" src={rooms.roomTypes.roomTypeImages[0].images.url} />
-                                                </ListItemAvatar>
-                                                <ListItemText
-                                                    primary={`${rooms.roomTypes.name} Room`}
-                                                    secondary={<React.Fragment>
-                                                        <Typography
-                                                            component="span"
-                                                            variant="body2"
-                                                            sx={{ color: 'text.primary', display: 'inline' }}
-                                                        >
-                                                            {rooms.roomTypes.description}
-                                                        </Typography>
-
-                                                    </React.Fragment>} />
-                                            </ListItem><Divider variant="inset" component="li" /></>
-
-                                        ))}
-
-                                    </List> */}
+                                  
 
                                 </Box>
 

@@ -35,19 +35,19 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
 }
 type AccessibilityFeaturesProps = {
   category:
-    | string
-    | "general"
-    | "bedroom"
-    | "entrance"
-    | "bathroom"
-    | "interior"
-    | "common"
-    | "kitchen"
-    | "communication"
-    | "Children"
-    | "Pets"
-    | "Check-Out"
-    | "Check-In";
+  | string
+  | "general"
+  | "bedroom"
+  | "entrance"
+  | "bathroom"
+  | "interior"
+  | "common"
+  | "kitchen"
+  | "communication"
+  | "Children"
+  | "Pets"
+  | "Check-Out"
+  | "Check-In";
   color?: "inherit" | "primary" | "secondary" | "error" | "info" | "success" | "warning";
   fontSize?: "inherit" | "small" | "medium" | "large";
 };
@@ -117,408 +117,316 @@ export default function PropertyFull() {
 
     <>
       {error ? (
-        <>Oh no, there was an error</>
+        <>There was an error</>
       ) : isLoading ? (
         <>Loading...</>
       ) : data ? (
 
         <>
 
-          {/*<Box
+          <Paper
+            key={data.data.id}
+            elevation={0}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 2,
               width: '100%',
-              padding: 2,
+              padding: 0,
+              display: 'flex',
+              flexDirection: 'row',
+              //gap: 2,
+              height: 'auto',
+              border: "none"
             }}
-          >*/}
-
-            <Paper
-              key={data.data.id}
-              elevation={0}
+          >
+            {/* Rating and Comments Column */}
+            <Box
               sx={{
-                width: '100%',
-                padding: 0,
+                flex: 1,
                 display: 'flex',
-                flexDirection: 'row',
-                //gap: 2,
-                height: 'auto',
-                border: "none"
+                flexDirection: 'column',
+                alignItems: "flex-start",
+                gap: 1
+
               }}
             >
-              {/* Image Column */}
-              {/* Rating and Comments Column */}
-              <Box
-                sx={{
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: "flex-start",
-                  gap: 1
+              <>
+                {() => setValue(data.data.propertyRatings ? Number(data.data.propertyRatings) : 0)}
+                <Rating
+                  name="simple-uncontrolled"
+                  onChange={(event, newValue) => {
+                    console.log(event, newValue);
+                  }}
+                  defaultValue={value}
+                />
+              </>
+              <Typography variant="body2"><strong>{data.data.name}</strong> - {data.data.description}</Typography>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <LocationOnOutlinedIcon fontSize="small" />
 
-                }}
-              >
-                <>
-                  {() => setValue(data.data.propertyRatings ? Number(data.data.propertyRatings) : 0)}
-                  <Rating
-                    name="simple-uncontrolled"
-                    onChange={(event, newValue) => {
-                      console.log(newValue);
-                    }}
-                    defaultValue={value}
-                  />
-                </>
-                <Typography variant="body2"><strong>{data.data.name}</strong> - {data.data.description}</Typography>
+                <span style={{ marginLeft: 8 }}>
+                  <Link variant="body2" href={`https://maps.google.com/?q=${data.data.address.latitude},${data.data.address.longitude}`} target="_blank" rel="noopener noreferrer">{data.data.address.county}, {data.data.address.country}</Link>
+                </span>
+              </div>
+
+            </Box>
+
+            {/* Details Column */}
+            <Box
+              sx={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1,
+                alignItems: "flex-end",
+                height: "10%"
+              }}
+            >
+
+
+              <>
+
+
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <LocationOnOutlinedIcon fontSize="small" />
-
-                  <span style={{ marginLeft: 8 }}>
-                    <Link variant="body2" href={`https://maps.google.com/?q=${data.data.address.latitude},${data.data.address.longitude}`} target="_blank" rel="noopener noreferrer">{data.data.address.county}, {data.data.address.country}</Link>
+                  <span style={{ marginLeft: 20 }}>
+                    <FavoriteBorderOutlinedIcon color="primary" fontSize="medium" />
+                  </span>
+                  <span style={{ marginLeft: 20 }}>
+                    <ShareOutlinedIcon color="primary" fontSize="medium" />
+                  </span>
+                  <span style={{ marginLeft: 20 }}>
+                    <Button variant="contained" endIcon={<BookmarkAddOutlinedIcon />}>
+                      Reserve
+                    </Button>
                   </span>
                 </div>
 
-              </Box>
-
-              {/* Details Column */}
-              <Box
-                sx={{
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 1,
-                  alignItems: "flex-end",
-                  height: "10%"
-                }}
-              >
 
 
-                <>
-
-
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <span style={{ marginLeft: 20 }}>
-                      <FavoriteBorderOutlinedIcon color="primary" fontSize="medium" />
-                    </span>
-                    <span style={{ marginLeft: 20 }}>
-                      <ShareOutlinedIcon color="primary" fontSize="medium" />
-                    </span>
-                    <span style={{ marginLeft: 20 }}>
-                      <Button variant="contained" endIcon={<BookmarkAddOutlinedIcon />}>
-                        Reserve
-                      </Button>
-                    </span>
-                  </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{ marginLeft: 20 }}>
+                    <LocalOfferOutlinedIcon color="primary" fontSize="small" />
+                  </span>
+                  <span style={{ marginLeft: 8 }}>
+                    <Typography alignItems="flex-start" color="primary" variant="body2">
+                      Low price
+                    </Typography>
+                  </span>
+                </div>
 
 
 
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <span style={{ marginLeft: 20 }}>
-                      <LocalOfferOutlinedIcon color="primary" fontSize="small" />
-                    </span>
-                    <span style={{ marginLeft: 8 }}>
-                      <Typography alignItems="flex-start" color="primary" variant="body2">
-                        Low price
-                      </Typography>
-                    </span>
-                  </div>
+              </>
+
+            </Box>
 
 
+          </Paper>
 
-                </>
-
-              </Box>
-
-
-            </Paper>
-
-          {/*</Box>*/}
-
-          {/*<Box
+          <Paper
+            key={data.data.id}
+            elevation={0}
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: "flex-start",
               width: '100%',
+              padding: 0,
+              display: 'flex',
+              flexDirection: 'row',
+              //gap: 1,
+              height: '40%',
             }}
-          >*/}
-
-            <Paper
-              key={data.data.id}
-              elevation={0}
+          >
+            {/* Property Images */}
+            <Box
               sx={{
-                width: '100%',
-                padding: 0,
+                flex: 1,
                 display: 'flex',
-                flexDirection: 'row',
-                //gap: 1,
-                height: '40%',
+                flexDirection: 'column',
+                alignItems: "flex-start",
+                padding: 2,
+                gap: 1,
               }}
             >
-              {/* Property Images */}
-              <Box
-                sx={{
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: "flex-start",
-                  padding: 2,
-                  gap: 1,
-                }}
-              >
-                <>
+              <>
 
-                  <ImageList
-                    sx={{ height: 350 }}
-                    variant="quilted"
-                    cols={8}
-                    rowHeight={121}
-                  >
-                    {data.data.propertyImages.map((item) => (
-                      <ImageListItem key={item.images.url} cols={2} rows={3}>
-                        <img
-                          {...srcset(item.images.url, 121, 3, 2)}
-                          alt={data.data.name}
-                          loading="lazy"
-                        />
-                      </ImageListItem>
-                    ))}
-                  </ImageList>
+                <ImageList
+                  sx={{ height: 350 }}
+                  variant="quilted"
+                  cols={8}
+                  rowHeight={121}
+                >
+                  {data.data.propertyImages.map((item) => (
+                    <ImageListItem key={item.images.url} cols={2} rows={3}>
+                      <img
+                        {...srcset(item.images.url, 121, 3, 2)}
+                        alt={data.data.name}
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
 
-                  {/*<Carousel sx={{ width: 800, height: 300 }}>
-            {
-                data.data.propertyImages.map( (image) => <img  src={image.images.url} /> )
-            }
-        </Carousel>*/}
-
-                </>
-              </Box>
+              </>
+            </Box>
 
 
-                            {/* Food images */}
-                            <Box
-                sx={{
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: "flex-start",
-                  padding: 2,
-                  gap: 1,
-                }}
-              >
-                <>
+            {/* Food images */}
+            <Box
+              sx={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: "flex-start",
+                padding: 2,
+                gap: 1,
+              }}
+            >
+              <>
 
-                  <ImageList
-                    sx={{  height: 350 }}
-                    variant="quilted"
-                    cols={4}
-                    rowHeight={121}
-                  >
-                    {data.data.foodImages.map((item) => (
-                      <ImageListItem key={item.images.url} cols={2} rows={3}>
-                        <img
-                          {...srcset(item.images.url, 121, 3, 2)}
-                          alt={data.data.name}
-                          loading="lazy"
-                        />
-                      </ImageListItem>
-                    ))}
-                  </ImageList>
+                <ImageList
+                  sx={{ height: 350 }}
+                  variant="quilted"
+                  cols={4}
+                  rowHeight={121}
+                >
+                  {data.data.foodImages.map((item) => (
+                    <ImageListItem key={item.images.url} cols={2} rows={3}>
+                      <img
+                        {...srcset(item.images.url, 121, 3, 2)}
+                        alt={data.data.name}
+                        loading="lazy"
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
 
-                  {/*<Carousel sx={{ width: 800, height: 300 }}>
-            {
-                data.data.propertyImages.map( (image) => <img  src={image.images.url} /> )
-            }
-        </Carousel>*/}
+              </>
+            </Box>
 
-                </>
-              </Box>
+          </Paper>
 
+          {/*Accessibility Features*/}
+          <Box
+            sx={{
+              flex: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1,
+              alignItems: "flex-start",
+              height: "10%",
+              width: '100%',
+            }}
+          >
 
-              {/* Rating and Comments Column */}
-              {/*<Box
-                sx={{
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: "flex-end",
-                  gap: 1,
-                }}
-              >
-                <>
-                  {() => setValue(data.data.propertyRatings ? Number(data.data.propertyRatings) : 0)}
-                  <Rating
-                    name="simple-uncontrolled"
-                    onChange={(event, newValue) => {
-                      console.log(newValue);
-                    }}
-                    defaultValue={value}
-                  />
-                </>
-               
-                <Typography variant="body2">
-                  {data.data.reviews.length} Reviews
-                </Typography>
-                
-                <Typography variant="body2">
-                  <strong>Comments:</strong> {data.data.reviews.length}
-                </Typography>
+            <>
+              <Card elevation={0} sx={{ marginLeft: 0 }}>
+                <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 2 }}>
+                  <Typography variant="body2" component="div">
+                    <strong>Accessibility features</strong>
+                  </Typography>
+                  <Divider />
+                  <List sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    padding: 0,
+                  }}>
+                    {data.data.accessibilityFeatures.map((features) => (
+                      <ListItem disablePadding sx={{ width: "auto" }}>
+                        <>
+                          <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <Button variant="contained" endIcon={<ArrowForwardIosOutlinedIcon />}>
-                  View property
-                </Button>
-              </Box>*/}
-            </Paper>
+                            <AccessibilityFeaturesIcons color="primary" fontSize="small" category={features.features.category} />
 
-          {/*</Box>*/}
+                            <span style={{ marginLeft: 8, marginRight: 20 }}>
 
-              {/*Accessibility Features*/}
-              <Box
-                sx={{
-                  flex: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 1,
-                  alignItems: "flex-start",
-                  height: "10%",
-                  width: '100%',
-                }}
-              >
+                              {features.features.feature}
 
-                <>
-                  <Card elevation={0} sx={{ marginLeft: 0 }}>
-                    <CardContent  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 2 }}>
-                      <Typography variant="body2" component="div">
-                        <strong>Accessibility features</strong>
-                      </Typography>
-                      <Divider  />
-                      <List sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        flexWrap: "wrap",
-                        padding: 0,
-                      }}>
-                        {data.data.accessibilityFeatures.map((features) => (
-                          <ListItem disablePadding sx={{ width: "auto" }}>
-                            <>
-                              <div style={{ display: 'flex', alignItems: 'center' }}>
-                                {/*<span style={{ marginLeft: 8 }}>*/}
-                                  <AccessibilityFeaturesIcons color="primary" fontSize="small" category={features.features.category} />
-                                {/*</span>*/}
+                            </span>
+                          </div>
+                        </>
+                      </ListItem>
+                    ))
+                    }
 
-                                <span style={{ marginLeft: 8, marginRight: 20 }}>
-                                  {/*<Typography
-                                    component="span"
-                                    variant="body2"
-                                    sx={{ color: 'text.primary', display: 'inline' }}
-                                  >*/}
-                                    {features.features.feature}
-                                  {/*</Typography>*/}
+                  </List>
 
-                                </span>
-                              </div>
-                              {/*<ListItemText primary={features.features.feature} />*/}
-                            </>
-                          </ListItem>
-                        ))
-                        }
+                </CardContent>
+              </Card>
 
-                      </List>
+            </>
 
-                    </CardContent>
-                  </Card>
+          </Box>
 
-                </>
+          {/*Property Amenities*/}
+          <Box
 
-              </Box>
+            sx={{
+              flex: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1,
+              alignItems: "flex-start",
+              height: "10%",
+              width: '100%',
+            }}
+          >
 
-              {/*Property Amenities*/}
-              <Box
-              
-                sx={{
-                  flex: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 1,
-                  alignItems: "flex-start",
-                  height: "10%",
-                  width: '100%',
-                }}
-              >
+            <>
+              <Card elevation={0} sx={{ marginLeft: 0 }}>
+                <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 2 }}>
+                  <Typography variant="body2" component="div">
+                    <strong>Property Amenities</strong>
+                  </Typography>
+                  <List sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    padding: 0,
+                  }}>
+                    {data.data.propertyAmenities.map((propertyAmenities) => (
+                      <ListItem disablePadding sx={{ width: "auto" }}>
+                        <>
+                          <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                <>
-                  <Card elevation={0} sx={{ marginLeft: 0 }}>
-                    <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 2 }}>
-                      <Typography variant="body2" component="div">
-                      <strong>Property Amenities</strong>
-                      </Typography>
-                      <List sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        flexWrap: "wrap",
-                        padding: 0,
-                      }}>
-                        {data.data.propertyAmenities.map((propertyAmenities) => (
-                          <ListItem disablePadding sx={{ width: "auto" }}>
-                            <>
-                              <div style={{ display: 'flex', alignItems: 'center' }}>
-                                {/*<span style={{ marginLeft: 8 }}>*/}
-                                  <AccessibilityFeaturesIcons color="primary" fontSize="small" category={propertyAmenities.amenities.category} />
-                                {/*</span>*/}
+                            <AccessibilityFeaturesIcons color="primary" fontSize="small" category={propertyAmenities.amenities.category} />
 
-                                <span style={{ marginLeft: 8, marginRight: 20 }}>
-                                  {/*<Typography
-                                    component="span"
-                                    variant="body2"
-                                    sx={{ color: 'text.primary', display: 'inline' }}
-                                  >*/}
-                                    {propertyAmenities.amenities.description}
-                                  {/*</Typography>*/}
+                            <span style={{ marginLeft: 8, marginRight: 20 }}>
+                              {propertyAmenities.amenities.description}
 
-                                </span>
-                              </div>
-                              {/*<ListItemText primary={features.features.feature} />*/}
-                            </>
-                          </ListItem>
-                        ))
-                        }
+                            </span>
+                          </div>
+                        </>
+                      </ListItem>
+                    ))
+                    }
 
-                      </List>
+                  </List>
 
-                    </CardContent>
-                  </Card>
+                </CardContent>
+              </Card>
+            </>
 
+          </Box>
 
+          {/*Property Policies*/}
+          <Box
 
-                </>
+            sx={{
+              flex: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 1,
+              alignItems: "flex-start",
+              height: "10%",
+              width: '100%',
+            }}
+          >
 
-              </Box>
+            {/* Property policies */}
 
-              {/*Property Policies*/}
-              <Box
-              
-                sx={{
-                  flex: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 1,
-                  alignItems: "flex-start",
-                  height: "10%",
-                  width: '100%',
-                }}
-              >
+            <Typography sx={{ padding: 2 }} variant="body2" component="div">
+              <strong>Property Policies</strong>
+            </Typography>
 
-
-
-
-{/* Property policies */}
-
-<Typography sx={{padding: 2}} variant="body2" component="div">
-                      <strong>Property Policies</strong>
-                      </Typography>
-
-<Paper
+            <Paper
               key={data.data.id}
               elevation={1}
               sx={{
@@ -531,72 +439,68 @@ export default function PropertyFull() {
                 border: "none"
               }}
             >
-              {/* Image Column */}
-              {/* Rating and Comments Column */}
-
-
 
               {data.data.propertyPolicies.map((propertyPolicies) => (
-              
-              <div style={{                flex: 1,
-                display: 'flex',
-                flexDirection: 'row',
-                gap: 1,
-                alignItems: "flex-start",
-                width: '100%',
-                padding: 0,
+
+                <div style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: 1,
+                  alignItems: "flex-start",
+                  width: '100%',
+                  padding: 0,
                 }}>
-              
-              <Box
 
-              sx={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: "flex-start",
-                
+                  <Box
 
-              }}
-            >
-                              <div style={{ display: 'flex', alignItems: 'center' }}>
-                                
-                                  <AccessibilityFeaturesIcons color="primary" fontSize="small" category={propertyPolicies.policies.type} />
-
-                                <span style={{ marginLeft: 8, marginRight: 20 }}>
-                                  
-                                    {propertyPolicies.policies.type}
-                                 
-
-                                </span>
-                              </div>
-
-            </Box>
-
-            <Box
-              sx={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                
-                alignItems: "flex-start"
-              }}
-            >
+                    sx={{
+                      flex: 1,
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: "flex-start",
 
 
-<div >
-{propertyPolicies.policies.description}
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
 
-                              </div>
+                      <AccessibilityFeaturesIcons color="primary" fontSize="small" category={propertyPolicies.policies.type} />
 
-            </Box>
-              
-              </div>
-              
+                      <span style={{ marginLeft: 8, marginRight: 20 }}>
+
+                        {propertyPolicies.policies.type}
+
+
+                      </span>
+                    </div>
+
+                  </Box>
+
+                  <Box
+                    sx={{
+                      flex: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+
+                      alignItems: "flex-start"
+                    }}
+                  >
+
+                    <div >
+                      {propertyPolicies.policies.description}
+
+                    </div>
+
+                  </Box>
+
+                </div>
+
               ))}
 
             </Paper>
 
-              </Box>
+          </Box>
 
         </>
       ) : null}
