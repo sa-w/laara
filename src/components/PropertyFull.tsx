@@ -2,7 +2,7 @@ import Typography from '@mui/material/Typography';
 import { useGetPropertyByIdQuery } from '../services/properties';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { Box, Button, Card, CardActions, CardContent, ImageList, ImageListItem, Link, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Rating, Stack, styled } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, Divider, ImageList, ImageListItem, Link, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Paper, Rating, Stack, styled } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
@@ -21,6 +21,10 @@ import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import RectangleOutlinedIcon from '@mui/icons-material/RectangleOutlined';
 import Carousel from 'react-material-ui-carousel'
 import { WidthFull } from '@mui/icons-material';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined';
+import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
+import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
 interface PropertyFull {
   /** The property id */
@@ -68,13 +72,28 @@ function AccessibilityFeaturesIcons({ category, color, fontSize }) {
 
     return (<LocalPhoneOutlinedIcon color={color} fontSize={fontSize} />);
 
+  } else if (category === "Children") {
+
+    return (<ChildCareOutlinedIcon color={color} fontSize={fontSize} />);
+
+  } else if (category === "Pets") {
+
+    return (<PetsOutlinedIcon color={color} fontSize={fontSize} />);
+
+  } else if (category === "Check-Out") {
+
+    return (<AccessAlarmOutlinedIcon color={color} fontSize={fontSize} />);
+
+  } else if (category === "Check-In") {
+
+    return (<AccessAlarmOutlinedIcon color={color} fontSize={fontSize} />);
+
   } else {
 
-    return (<RectangleOutlinedIcon color={color} fontSize={fontSize} />);
+    return (<CheckBoxOutlinedIcon color={color} fontSize={fontSize} />);
 
   }
 }
-
 
 function Item({props})
 {
@@ -89,8 +108,6 @@ function Item({props})
         </Paper>
     )
 }
-
-
 
 export default function PropertyFull() {
 
@@ -110,7 +127,7 @@ export default function PropertyFull() {
 
         <>
 
-          <Box
+          {/*<Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
@@ -119,17 +136,17 @@ export default function PropertyFull() {
               width: '100%',
               padding: 2,
             }}
-          >
+          >*/}
 
             <Paper
               key={data.data.id}
               elevation={0}
               sx={{
                 width: '100%',
-                padding: 2,
+                padding: 0,
                 display: 'flex',
                 flexDirection: 'row',
-                gap: 2,
+                //gap: 2,
                 height: 'auto',
                 border: "none"
               }}
@@ -170,7 +187,7 @@ export default function PropertyFull() {
               {/* Details Column */}
               <Box
                 sx={{
-                  flex: 2,
+                  flex: 1,
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 1,
@@ -213,37 +230,13 @@ export default function PropertyFull() {
 
 
                 </>
-                {/*<List >
-                                      {property.rooms.map((rooms) => (
-
-                                          <><ListItem alignItems="flex-start">
-                                              <ListItemAvatar>
-                                                  <Avatar alt="room type image" src={rooms.roomTypes.roomTypeImages[0].images.url} />
-                                              </ListItemAvatar>
-                                              <ListItemText
-                                                  primary={`${rooms.roomTypes.name} Room`}
-                                                  secondary={<React.Fragment>
-                                                      <Typography
-                                                          component="span"
-                                                          variant="body2"
-                                                          sx={{ color: 'text.primary', display: 'inline' }}
-                                                      >
-                                                          {rooms.roomTypes.description}
-                                                      </Typography>
-
-                                                  </React.Fragment>} />
-                                          </ListItem><Divider variant="inset" component="li" /></>
-
-                                      ))}
-
-                                  </List> */}
 
               </Box>
 
 
             </Paper>
 
-          </Box>
+          {/*</Box>*/}
 
           {/*<Box
             sx={{
@@ -400,8 +393,9 @@ export default function PropertyFull() {
                   <Card elevation={0} sx={{ marginLeft: 0 }}>
                     <CardContent  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 2 }}>
                       <Typography variant="body2" component="div">
-                        Accessibility features
+                        <strong>Accessibility features</strong>
                       </Typography>
+                      <Divider  />
                       <List sx={{
                         display: "flex",
                         flexDirection: "row",
@@ -460,7 +454,7 @@ export default function PropertyFull() {
                   <Card elevation={0} sx={{ marginLeft: 0 }}>
                     <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingLeft: 2 }}>
                       <Typography variant="body2" component="div">
-                        Property Amenities
+                      <strong>Property Amenities</strong>
                       </Typography>
                       <List sx={{
                         display: "flex",
@@ -502,33 +496,110 @@ export default function PropertyFull() {
 
                 </>
 
-                {/*<List >
-                                            {property.rooms.map((rooms) => (
-    
-                                                <><ListItem alignItems="flex-start">
-                                                    <ListItemAvatar>
-                                                        <Avatar alt="room type image" src={rooms.roomTypes.roomTypeImages[0].images.url} />
-                                                    </ListItemAvatar>
-                                                    <ListItemText
-                                                        primary={`${rooms.roomTypes.name} Room`}
-                                                        secondary={<React.Fragment>
-                                                            <Typography
-                                                                component="span"
-                                                                variant="body2"
-                                                                sx={{ color: 'text.primary', display: 'inline' }}
-                                                            >
-                                                                {rooms.roomTypes.description}
-                                                            </Typography>
-    
-                                                        </React.Fragment>} />
-                                                </ListItem><Divider variant="inset" component="li" /></>
-    
-                                            ))}
-    
-                                        </List> */}
-
               </Box>
 
+              {/*Property Policies*/}
+              <Box
+              
+                sx={{
+                  flex: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 1,
+                  alignItems: "flex-start",
+                  height: "10%",
+                  width: '100%',
+                }}
+              >
+
+
+
+
+{/* Property policies */}
+
+<Typography sx={{padding: 2}} variant="body2" component="div">
+                      <strong>Property Policies</strong>
+                      </Typography>
+
+<Paper
+              key={data.data.id}
+              elevation={1}
+              sx={{
+                width: '100%',
+                padding: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 2,
+                height: 'auto',
+                border: "none"
+              }}
+            >
+              {/* Image Column */}
+              {/* Rating and Comments Column */}
+
+
+
+              {data.data.propertyPolicies.map((propertyPolicies) => (
+              
+              <div style={{                flex: 1,
+                display: 'flex',
+                flexDirection: 'row',
+                gap: 1,
+                alignItems: "flex-start",
+                width: '100%',
+                padding: 0,
+                }}>
+              
+              <Box
+
+              sx={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: "flex-start",
+                
+
+              }}
+            >
+                              <div style={{ display: 'flex', alignItems: 'center' }}>
+                                
+                                  <AccessibilityFeaturesIcons color="primary" fontSize="small" category={propertyPolicies.policies.type} />
+
+                                <span style={{ marginLeft: 8, marginRight: 20 }}>
+                                  
+                                    {propertyPolicies.policies.type}
+                                 
+
+                                </span>
+                              </div>
+
+            </Box>
+
+            <Box
+              sx={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                
+                alignItems: "flex-start"
+              }}
+            >
+
+
+<div >
+{propertyPolicies.policies.description}
+
+                              </div>
+
+            </Box>
+              
+              </div>
+              
+              ))}
+
+            </Paper>
+
+              </Box>
 
         </>
       ) : null}
