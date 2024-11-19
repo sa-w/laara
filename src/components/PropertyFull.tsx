@@ -230,7 +230,7 @@ export default function PropertyFull() {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
+              alignItems: "flex-start",
               width: '100%',
             }}
           >
@@ -252,8 +252,9 @@ export default function PropertyFull() {
                 sx={{
                   flex: 1,
                   display: 'flex',
-                  alignItems: "flex-start",
-                  justifyContent: "flex-start",
+                  flexDirection: 'column',
+                  alignItems: "flex-end",
+                  gap: 1,
                 }}
               >
                 <>
@@ -316,9 +317,7 @@ export default function PropertyFull() {
 
           </Box>
 
-{/*Accessibility Features*/}
-
-              {/* Details Column */}
+              {/*Accessibility Features*/}
               <Box
                 sx={{
                   flex: 2,
@@ -373,82 +372,9 @@ export default function PropertyFull() {
                     </CardContent>
                   </Card>
 
-
-
                 </>
-
-                {/*<List >
-                                            {property.rooms.map((rooms) => (
-    
-                                                <><ListItem alignItems="flex-start">
-                                                    <ListItemAvatar>
-                                                        <Avatar alt="room type image" src={rooms.roomTypes.roomTypeImages[0].images.url} />
-                                                    </ListItemAvatar>
-                                                    <ListItemText
-                                                        primary={`${rooms.roomTypes.name} Room`}
-                                                        secondary={<React.Fragment>
-                                                            <Typography
-                                                                component="span"
-                                                                variant="body2"
-                                                                sx={{ color: 'text.primary', display: 'inline' }}
-                                                            >
-                                                                {rooms.roomTypes.description}
-                                                            </Typography>
-    
-                                                        </React.Fragment>} />
-                                                </ListItem><Divider variant="inset" component="li" /></>
-    
-                                            ))}
-    
-                                        </List> */}
 
               </Box>
-
-
-
-
-
-              {/* Rating and Comments Column */}
-              {/*<Box
-                sx={{
-                  flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: "flex-end",
-                  gap: 1,
-                }}
-              >
-                <>
-                  {() => setValue(data.data.propertyRatings ? Number(data.data.propertyRatings) : 0)}
-                  <Rating
-                    name="simple-uncontrolled"
-                    onChange={(event, newValue) => {
-                      console.log(newValue);
-                    }}
-                    defaultValue={value}
-                  />
-                </>
-                
-                <Typography variant="body2">
-                  {data.data.reviews.length} Reviews
-                </Typography>
-                
-                <Typography variant="body2">
-                  <strong>Comments:</strong> {data.data.reviews.length}
-                </Typography>
-
-                <Button variant="contained" endIcon={<ArrowForwardIosOutlinedIcon />}>
-                  View property
-                </Button>
-              </Box>*/}
-
-
-            {/*</Paper>*/}
-
-          
-
-
-
 
               {/*Property Amenities*/}
               <Box
