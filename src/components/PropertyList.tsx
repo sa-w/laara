@@ -1,21 +1,11 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
 import { useGetAllPropertiesQuery } from '../services/properties';
-import { Avatar, Box, Button, Divider, IconButton, Link, List, ListItem, ListItemAvatar, ListItemText, Paper, Rating, Stack, styled } from '@mui/material';
-import Grid from '@mui/material/Grid2';
-import { Height } from '@mui/icons-material';
-import { useId, useState } from 'react';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Box, Button, Link, Paper, Rating, styled } from '@mui/material';
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import FlatwareOutlinedIcon from '@mui/icons-material/FlatwareOutlined';
 import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlined';
 import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
-
+import { useState } from 'react';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
@@ -94,7 +84,7 @@ export default function PropertyList() {
                                     }}
                                 >
                                     <Typography variant="body2">{property.name} - {property.description}</Typography>
-                                  
+
                                     <>
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <LocationOnOutlinedIcon fontSize="small" />
@@ -106,25 +96,25 @@ export default function PropertyList() {
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <MeetingRoomOutlinedIcon fontSize="small" />
                                             <span style={{ marginLeft: 8 }}>
-                                            <Typography alignItems="flex-start" variant="body2">
-                                                Available Rooms: {property.rooms.length}
-                                            </Typography>
+                                                <Typography alignItems="flex-start" variant="body2">
+                                                    Available Rooms: {property.rooms.length}
+                                                </Typography>
                                             </span>
                                         </div>
-                                        
-                                            
 
-                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+
+
+                                        <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <RestaurantMenuOutlinedIcon fontSize="small" />
                                             <span style={{ marginLeft: 8 }}>
-                                            <Typography alignItems="flex-start" variant="body2">
-                                                Meal options: {property.mealOptions.length}
-                                            </Typography>
+                                                <Typography alignItems="flex-start" variant="body2">
+                                                    Meal options: {property.mealOptions.length}
+                                                </Typography>
                                             </span>
                                         </div>
 
 
-                                        
+
                                     </>
                                     {/*<List >
                                         {property.rooms.map((rooms) => (
@@ -164,7 +154,7 @@ export default function PropertyList() {
                                     }}
                                 >
                                     <>
-                                        {() => setValue(property.propertyRatings?property.propertyRatings:0)}
+                                        {() => setValue(property.propertyRatings ? property.propertyRatings : 0)}
                                         <Rating
                                             name="simple-uncontrolled"
                                             onChange={(event, newValue) => {
@@ -183,104 +173,17 @@ export default function PropertyList() {
                                     </Typography>
 
                                     <Button variant="contained" endIcon={<ArrowForwardIosOutlinedIcon />}>
-  View property
-</Button>
+                                        View property
+                                    </Button>
                                 </Box>
                             </Paper>
                         ))}
                     </Box>
 
-
-                    {/*<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                        {data.data.map((property) => (
-                            <ListItem key={property.id} disableGutters>
-
-                                <Box sx={{ flexGrow: 1 }}>
-                                    <Grid container spacing={3}>
-                                        <Grid style={{ height: '40%', width: '25%' }} size={4}>
-                                            <img style={{ height: '40%', width: '25%' }} src={property.propertyImages[0].images.url}></img>
-                                        </Grid>
-                                        <Grid style={{ height: '40%', width: '25%' }} size={6}>
-                                            <Stack spacing={2}>
-                                                <>{property.name}</>
-                                                <br />
-                                                <>{property.description}</>
-
-                                            </Stack>
-                                        </Grid>
-                                        <Grid style={{ height: '40%', width: '25%' }} size={2}>
-                                            <Item>size=grow</Item>
-                                        </Grid>
-                                    </Grid>
-                                </Box> */}
-
-
-
-                    {/*<Box sx={{ flexGrow: 1 }}>
-<Grid container spacing={1}>
-
-<Grid size={5}>
-<Card >
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image={property.propertyImages[0].images.url || "/static/images/cards/contemplative-reptile.jpg"}
-                                    alt={property.name || "Property Image"}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {property.name || "Unknown Property"}
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                        {property.description || "No description available."}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-        </Grid>
-
-        <Grid size={5}>
-          
-        </Grid>
-
-        <Grid size={2}>
-          
-          </Grid>
-
-    </Grid> 
-</Box>*/}
-
-                    {/*<Card sx={{ maxWidth: 345 }}>
-                            <CardActionArea>
-                                <CardMedia
-                                    component="img"
-                                    height="140"
-                                    image={property.propertyImages[0].images.url || "/static/images/cards/contemplative-reptile.jpg"}
-                                    alt={property.name || "Property Image"}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        {property.name || "Unknown Property"}
-                                    </Typography>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                        {property.description || "No description available."}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>*/}
-                    {/* <ListItemText primary={property.name || `Property ${property.id}`} />
-                                <IconButton aria-label="comment" />
-                            </ListItem>
-                        ))}
-                    </List>*/}
                 </>
             ) : null}
 
-
         </>
-
-
 
     );
 }
