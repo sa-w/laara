@@ -19,6 +19,8 @@ import AddHomeWorkOutlinedIcon from '@mui/icons-material/AddHomeWorkOutlined';
 import CountertopsOutlinedIcon from '@mui/icons-material/CountertopsOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import RectangleOutlinedIcon from '@mui/icons-material/RectangleOutlined';
+import Carousel from 'react-material-ui-carousel'
+import { WidthFull } from '@mui/icons-material';
 
 interface PropertyFull {
   /** The property id */
@@ -72,6 +74,23 @@ function AccessibilityFeaturesIcons({ category, color, fontSize }) {
 
   }
 }
+
+
+function Item({props})
+{
+    return (
+        <Paper>
+            <h2>{props.item.name}</h2>
+            <p>{props.item.description}</p>
+
+            <Button className="CheckButton">
+                Check it out!
+            </Button>
+        </Paper>
+    )
+}
+
+
 
 export default function PropertyFull() {
 
@@ -226,14 +245,14 @@ export default function PropertyFull() {
 
           </Box>
 
-          <Box
+          {/*<Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: "flex-start",
               width: '100%',
             }}
-          >
+          >*/}
 
             <Paper
               key={data.data.id}
@@ -243,24 +262,25 @@ export default function PropertyFull() {
                 padding: 0,
                 display: 'flex',
                 flexDirection: 'row',
-                gap: 1,
+                //gap: 1,
                 height: '40%',
               }}
             >
-              {/* Image Column */}
+              {/* Property Images */}
               <Box
                 sx={{
                   flex: 1,
                   display: 'flex',
                   flexDirection: 'column',
-                  alignItems: "flex-end",
+                  alignItems: "flex-start",
+                  padding: 2,
                   gap: 1,
                 }}
               >
                 <>
 
                   <ImageList
-                    sx={{ width: 800, height: 300 }}
+                    sx={{ height: 350 }}
                     variant="quilted"
                     cols={8}
                     rowHeight={121}
@@ -276,12 +296,58 @@ export default function PropertyFull() {
                     ))}
                   </ImageList>
 
+                  {/*<Carousel sx={{ width: 800, height: 300 }}>
+            {
+                data.data.propertyImages.map( (image) => <img  src={image.images.url} /> )
+            }
+        </Carousel>*/}
+
+                </>
+              </Box>
+
+
+                            {/* Food images */}
+                            <Box
+                sx={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: "flex-start",
+                  padding: 2,
+                  gap: 1,
+                }}
+              >
+                <>
+
+                  <ImageList
+                    sx={{  height: 350 }}
+                    variant="quilted"
+                    cols={4}
+                    rowHeight={121}
+                  >
+                    {data.data.foodImages.map((item) => (
+                      <ImageListItem key={item.images.url} cols={2} rows={3}>
+                        <img
+                          {...srcset(item.images.url, 121, 3, 2)}
+                          alt={data.data.name}
+                          loading="lazy"
+                        />
+                      </ImageListItem>
+                    ))}
+                  </ImageList>
+
+                  {/*<Carousel sx={{ width: 800, height: 300 }}>
+            {
+                data.data.propertyImages.map( (image) => <img  src={image.images.url} /> )
+            }
+        </Carousel>*/}
+
                 </>
               </Box>
 
 
               {/* Rating and Comments Column */}
-              <Box
+              {/*<Box
                 sx={{
                   flex: 1,
                   display: 'flex',
@@ -300,11 +366,11 @@ export default function PropertyFull() {
                     defaultValue={value}
                   />
                 </>
-                {/*</Typography>*/}
+               
                 <Typography variant="body2">
                   {data.data.reviews.length} Reviews
                 </Typography>
-                {/*</Typography>*/}
+                
                 <Typography variant="body2">
                   <strong>Comments:</strong> {data.data.reviews.length}
                 </Typography>
@@ -312,10 +378,10 @@ export default function PropertyFull() {
                 <Button variant="contained" endIcon={<ArrowForwardIosOutlinedIcon />}>
                   View property
                 </Button>
-              </Box>
+              </Box>*/}
             </Paper>
 
-          </Box>
+          {/*</Box>*/}
 
               {/*Accessibility Features*/}
               <Box
