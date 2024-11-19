@@ -20,25 +20,6 @@ import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
-// Define the prop types
-type AccessibilityFeaturesIconsProps = {
-  category:
-    | "general"
-    | "bedroom"
-    | "entrance"
-    | "bathroom"
-    | "interior"
-    | "common"
-    | "kitchen"
-    | "communication"
-    | "Children"
-    | "Pets"
-    | "Check-Out"
-    | "Check-In";
-  color?: "inherit" | "primary" | "secondary" | "error" | "info" | "success" | "warning";
-  fontSize?: "inherit" | "small" | "medium" | "large";
-};
-
 interface PropertyFull {
   /** The property id */
   id: Number
@@ -54,6 +35,7 @@ function srcset(image: string, size: number, rows = 1, cols = 1) {
 }
 type AccessibilityFeaturesProps = {
   category:
+    | string
     | "general"
     | "bedroom"
     | "entrance"
