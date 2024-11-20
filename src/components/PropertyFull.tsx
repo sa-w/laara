@@ -19,6 +19,7 @@ import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import ChildCareOutlinedIcon from '@mui/icons-material/ChildCareOutlined';
 import PetsOutlinedIcon from '@mui/icons-material/PetsOutlined';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
+import ErrorComponent from './ErrorComponent';
 
 interface PropertyFull {
   /** The property id */
@@ -117,7 +118,7 @@ export default function PropertyFull() {
 
     <>
       {error ? (
-        <>There was an error</>
+        <ErrorComponent/>
       ) : isLoading ? (
         <>Loading...</>
       ) : data ? (

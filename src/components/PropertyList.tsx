@@ -7,6 +7,7 @@ import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlin
 import MeetingRoomOutlinedIcon from '@mui/icons-material/MeetingRoomOutlined';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ErrorComponent from './ErrorComponent';
 
 export default function PropertyList() {
 
@@ -17,7 +18,7 @@ export default function PropertyList() {
 
         <>
             {error ? (
-                <>There was an error</>
+                <ErrorComponent/>
             ) : isLoading ? (
                 <>Loading...</>
             ) : data ? (
